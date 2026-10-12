@@ -4,6 +4,10 @@ const fs = require("fs");
 const searchWord = process.argv[2];
 const searchWord2 = process.argv[3];
 
+function plural(n, one, many) {
+  return n === 1 ? one : many;
+}
+
 if (!searchWord) {
   console.log("Укажи слово для поиска. Например: node index.js дорога дорога2");
   process.exit(1);
@@ -73,5 +77,12 @@ console.log("—".repeat(30));
 if (lineCount === 0) {
   console.log("Ничего не найдено");
 } else {
-  console.log("Найдено " + lineCount + " строк в " + fileCount + " стихах");
+  console.log(
+    "Найдено " +
+      lineCount +
+      " строк в " +
+      fileCount +
+      " " +
+      plural(fileCount, "файле", "файлах"),
+  );
 }
